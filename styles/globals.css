@@ -14,3 +14,20 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.col-3 {
+  width: 25%;
+}
+
+.col-9 {
+  width: 75%;
+}
+
+.flex-layout {
+  display: flex;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}

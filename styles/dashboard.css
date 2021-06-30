@@ -1,0 +1,39 @@
+.sidebar, .main-bar {
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.sidebar-item {
+    background-color: #C4C4C4;
+    padding: 0.75rem 0.5rem;
+}
+
+.todo {
+   margin-bottom: 0.75rem;
+   background-color: #C4C4C4;
+   padding: 10px;
+   border-radius: 5px;
+   max-width: 90%;
+}
+
+.todo-active {
+    background-color: #E2DDDD;
+    border-left: 3px solid dodgerblue;
+}
+
+.todo input[type='checkbox'] {
+    padding: 0.5rem;
+}
+
+.todo-text {
+    margin-left: 0.5rem;
+}
+
+.todo-text-primary {
+    font-size: 1.2rem;
+}
+
+.form-box {
+    max-width: 500px;
+    margin: 0 auto;
+}
