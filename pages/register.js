@@ -9,31 +9,44 @@ import {
   NavbarBrand,
 } from "reactstrap";
 import Link from "next/link";
+import Router from "next/router";
 import React, { useState } from "react";
+
+import yatApi from "../pages/api/hello";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const signupCall = async (data) => {
+    try {
+      const response = await yatApi.post("/api/user", data);
+      Router.push("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     const newUser = {
-      name,
+      userName: name,
       email,
       password,
     };
     setName("");
     setEmail("");
     setPassword("");
-    console.log("newUser ", newUser);
+    Router.push("/login");
+    return signupCall(newUser);
   };
 
   return (
     <Container>
-      <Navbar>
+      <div>
         <h3>Sign Up</h3>
-      </Navbar>
+      </div>
 
       <div className="form-box">
         <Form onSubmit={onFormSubmit}>

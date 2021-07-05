@@ -8,13 +8,27 @@ import {
   Navbar,
 } from "reactstrap";
 import Link from "next/link";
+import Router from "next/router";
 import React, { useState } from "react";
+
+import yatApi from "../pages/api/hello";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onFormSubmit = (e) => {
+  const loginCall = async (data) => {
+    try {
+      const response = await yatApi.post("/api/user/authenticate", data);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      Router.push("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onFormSubmit = async (e) => {
     e.preventDefault();
     const loggedInUser = {
       email,
@@ -22,15 +36,15 @@ const Login = () => {
     };
     setEmail("");
     setPassword("");
-    console.log("loggedInUser ", loggedInUser);
+    return loginCall(loggedInUser);
   };
 
   return (
     <>
       <Container>
-        <Navbar>
+        <div>
           <h3>Login</h3>
-        </Navbar>
+        </div>
         <div className="form-box">
           <Form onSubmit={onFormSubmit}>
             <FormGroup>
