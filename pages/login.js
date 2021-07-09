@@ -42,10 +42,10 @@ const Login = () => {
   return (
     <>
       <Container>
-        <div>
-          <h3>Login</h3>
-        </div>
         <div className="form-box">
+          <div>
+            <h3>Login</h3>
+          </div>
           <Form onSubmit={onFormSubmit}>
             <FormGroup>
               <Label for="email">Email</Label>
@@ -74,19 +74,10 @@ const Login = () => {
               Login
             </Button>
           </Form>
-
-          <p>Forgot Password?</p>
-
           <div>
             New to Yat?{" "}
             <Link href="/register">
               <a>Sign Up</a>
-            </Link>
-          </div>
-
-          <div>
-            <Link href="/dashboard">
-              <a>Dashboard</a>
             </Link>
           </div>
         </div>
