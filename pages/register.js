@@ -44,11 +44,10 @@ const Register = () => {
 
   return (
     <Container>
-      <div>
-        <h3>Sign Up</h3>
-      </div>
-
       <div className="form-box">
+        <div>
+          <h3>Sign Up</h3>
+        </div>
         <Form onSubmit={onFormSubmit}>
           <FormGroup>
             <Label for="text">Name</Label>
