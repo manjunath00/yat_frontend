@@ -2,7 +2,7 @@ import { Input, Container, Button } from "reactstrap";
 import React, { useState, useEffect } from "react";
 import Router from "next/router";
 
-import yatApi from "../pages/api/hello";
+import yatApi from "./api/api";
 
 const Dashboard = (props) => {
   const { todos = [] } = props;
