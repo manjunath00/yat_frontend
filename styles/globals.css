@@ -14,7 +14,6 @@ a {
 * {
   box-sizing: border-box;
 }
-<<<<<<< HEAD
 
 .col-3 {
   width: 25%;
@@ -33,5 +32,3 @@ a {
   justify-content: space-between;
   width: 100%;
 }
-=======
->>>>>>> parent of 8859d9f... Added state management
