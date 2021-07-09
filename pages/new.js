@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
 import Router from "next/router";
 
-import yatApi from "../pages/api/hello";
+import yatApi from "../pages/api/api";
 
 const NewTask = () => {
   const [taskName, setTaskName] = useState("");

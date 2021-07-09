@@ -12,7 +12,7 @@ import Link from "next/link";
 import Router from "next/router";
 import React, { useState } from "react";
 
-import yatApi from "../pages/api/hello";
+import yatApi from "../pages/api/api";
 
 const Register = () => {
   const [name, setName] = useState("");
