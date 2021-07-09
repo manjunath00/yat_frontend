@@ -8,6 +8,22 @@
     padding: 0.75rem 0.5rem;
 }
 
+.dashboard-header {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-right {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-right div {
+    margin-left: 1rem;
+}
+
 .todo {
    margin-bottom: 0.75rem;
    background-color: #C4C4C4;
