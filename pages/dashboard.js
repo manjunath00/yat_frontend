@@ -1,20 +1,21 @@
-import { Input, Container } from "reactstrap";
+import { Input, Container, Button } from "reactstrap";
 import React, { useState, useEffect } from "react";
+import Router from "next/router";
 
 import yatApi from "../pages/api/hello";
-import Router from "next/router";
 
 const Dashboard = (props) => {
   const { todos = [] } = props;
   const [tasks, setTasks] = useState(todos);
   const [allTasks, setAllTasks] = useState(todos);
+  const [meta, setMeta] = useState({ completed: 0, pending: 0 });
 
   const getTasks = async () => {
     try {
       const response = await yatApi.get("/api/task");
-      console.log("Not Executed");
       setTasks(response.data);
       setAllTasks(response.data);
+      completedPending();
     } catch (error) {
       console.log("Error ", error.message);
     }
@@ -45,6 +46,16 @@ const Dashboard = (props) => {
     setTasks(completedTasks);
   };
 
+  const onAll = () => setTasks(allTasks);
+
+  const completedPending = () => {
+    const completed =
+      allTasks.filter((item) => item.completed === true).length || 0;
+
+    const pending = allTasks.length - completed;
+    setMeta({ completed, pending });
+  };
+
   const onDeleteTask = async (id) => {
     const response = await yatApi.delete(`/api/task/${id}`);
     return getTasks();
@@ -64,31 +75,47 @@ const Dashboard = (props) => {
 
   return (
     <Container>
-      <div className="flex">
+      <div className="dashboard-header">
         <h3>Dashboard</h3>
-        <div>
-          <button onClick={() => onLogout()}>Logout</button>
+
+        <div className="dashboard-right">
+          <div>
+            <Button
+              color="primary"
+              size="md"
+              onClick={() => Router.push("/new")}
+            >
+              New Task
+            </Button>
+          </div>
+
+          <div>
+            <button onClick={() => onLogout()}>Logout</button>
+          </div>
         </div>
       </div>
       <div className="flex">
         <div className="col-3 sidebar">
           <div
+            className="flex sidebar-item todo-active"
+            onClick={() => onAll()}
+          >
+            <h6>All </h6>
+            <span>{allTasks.length || 0}</span>
+          </div>
+          <div
             className="flex sidebar-item"
             onClick={() => onToggleStatus(true)}
           >
             <h6>Completed</h6>
-            <span>50</span>
-          </div>
-          <div className="flex sidebar-item todo-active">
-            <h6>Favourites </h6>
-            <span>50</span>
+            <span>{meta.completed}</span>
           </div>
           <div
             className="flex sidebar-item"
             onClick={() => onToggleStatus(false)}
           >
-            <h6>Todo</h6>
-            <span>50</span>
+            <h6>Pending</h6>
+            <span>{meta.pending}</span>
           </div>
         </div>
         <div className="col-9 main-bar">
@@ -119,32 +146,3 @@ const Dashboard = (props) => {
 };
 
 export default Dashboard;
-
-Dashboard.defaultProps = {
-  todos: [
-    {
-      id: 1,
-      title: "Hello",
-      description: "Hello 1",
-      completed: true,
-    },
-    {
-      id: 2,
-      title: "Hello 2",
-      description: "Hello 2",
-      completed: false,
-    },
-    {
-      id: 3,
-      title: "Hello 3",
-      description: "Hello 3",
-      completed: false,
-    },
-    {
-      id: 4,
-      title: "Hello 4",
-      description: "Hello 4",
-      completed: true,
-    },
-  ],
-};
