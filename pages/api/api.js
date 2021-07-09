@@ -5,7 +5,7 @@ axios.defaults.headers.post["Content-Type"] = "applicaton/json";
 
 axios.interceptors.request.use(
   (request) => {
-    console.log("Request logged", request);
+    // console.log("Request logged", request);
     const token = localStorage.getItem("token");
 
     request.headers.authorization = `Bearer ${token}`;
@@ -19,7 +19,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response) => {
-    console.log("Response logged", response.data);
+    // console.log("Response logged", response.data);
     return response;
   },
   (error) => {
