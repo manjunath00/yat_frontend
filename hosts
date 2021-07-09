@@ -1,0 +1,23 @@
+127.0.0.1	localhost
+127.0.1.1	powerhorse
+The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+127.0.0.1 redlight.com
+127.0.0.1 reddtits.me
+172.217.163.46 porndoe.com
+172.217.163.45 fap.bar
+65.0.91.21 www.fap.bar
+#127.0.0.1 hotscopes.net
+127.0.0.1 reddit.com
+127.0.0.1 theprint.in
+127.0.0.1 idrw.org
+127.0.0.1 ajaishukla.com 
+127.0.0.1 www.instagram.com 
+127.0.0.1 reddit.com
+127.0.0.1 www.reddit.com
+127.0.0.1 twitter.com
+127.0.0.1 hotscopes.to
