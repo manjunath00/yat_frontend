@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input, Container } from "reactstrap";
+import Router from "next/router";
 
 import yatApi from "../pages/api/hello";
 
@@ -10,6 +11,7 @@ const NewTask = () => {
 
   const asyncNewTask = async (data) => {
     const response = await yatApi.post("/api/task", data);
+    Router.push("/dashboard");
   };
 
   const onFormSubmit = (e) => {
@@ -22,14 +24,13 @@ const NewTask = () => {
     setTaskName("");
     setCompleted(false);
     setDescription("");
-    console.log("Task ", task);
 
     return asyncNewTask(task);
   };
 
   return (
     <Container>
-      <div>
+      <div className="form-box">
         <h3>New Task</h3>
 
         <div>
@@ -44,6 +45,7 @@ const NewTask = () => {
                 onChange={(e) => setTaskName(e.target.value)}
               />
             </FormGroup>
+            <br />
 
             <FormGroup>
               <Label for="description">Description</Label>
@@ -55,15 +57,17 @@ const NewTask = () => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </FormGroup>
+            <br />
 
             <FormGroup>
-              <Label for="email">Status</Label>
               <Input
                 type="checkbox"
                 value={completed}
                 onChange={(e) => setCompleted(e.target.checked)}
               />{" "}
+              <Label for="email">Completed</Label>
             </FormGroup>
+            <br />
 
             <FormGroup>
               <Button color="primary" size="md" block>
