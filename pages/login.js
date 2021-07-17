@@ -9,19 +9,30 @@ import {
 } from "reactstrap";
 import Link from "next/link";
 import Router from "next/router";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import yatApi from "./api/api";
+import { UserContext } from "./context/yat";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { dispatch } = useContext(UserContext);
 
-  const loginCall = async (data) => {
+  const loginCall = async (loginData) => {
     try {
-      const response = await yatApi.post("/api/user/authenticate", data);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
+      const response = await yatApi.post("/api/user/authenticate", loginData);
+      const { data } = response;
+
+      dispatch({
+        type: "LOGIN",
+        payload: {
+          email: data.email,
+          token: data.token,
+          userName: data.userName,
+          id: data._id,
+        },
+      });
       Router.push("/dashboard");
     } catch (error) {
       console.log(error);
